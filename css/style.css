@@ -662,6 +662,53 @@ section h1 {
 /* ------------------------------
       RESUME PAGE
 --------------------------------*/
+
+/* Styling for the paragraph container */
+.scroll-down {
+    /* Centers the element horizontally on the viewport */
+    position: fixed;
+    top: 90%; /* Starts the top edge at the middle of the viewport */
+    left: 50%; /* Starts the left edge at the middle of the viewport */
+    transform: translate(-50%, -50%); /* Shifts the element back by half its own width/height to truly center it */
+    z-index: 1000; /* Ensures it stays above other content */
+    padding: 10px 20px;
+    color: var(--text); /* Optional: Text color */
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    transition: opacity 0.3s ease-out; /* For the smooth fade-out effect */
+    display: none;
+}
+
+/* Animation for the icon (i element) */
+.scroll-down i {
+    display: inline-block; /* Required for the transform/animation to work correctly */
+    margin-left: 5px; /* Spacing between text and icon */
+    /* Define the animation */
+    animation: up-down 1.5s infinite ease-in-out;
+}
+
+/* Keyframes for the up and down movement animation */
+@keyframes up-down {
+    0% {
+        transform: translateY(0); /* Start position */
+    }
+    50% {
+        transform: translateY(-5px); /* Move up 5 pixels */
+    }
+    100% {
+        transform: translateY(0); /* Return to start position, creating a loop */
+    }
+}
+
+/* Class to apply when the page is scrolled, which hides the element */
+.scroll-down.hidden {
+    opacity: 0; /* Fades the element out */
+    pointer-events: none; /* Prevents interaction after it's hidden */
+}
+
+
+
 .timeline {
   list-style: none;
   margin-top: 10px;
@@ -1209,6 +1256,10 @@ nav ul li .theme-toggle {
   .hero-buttons a {
     flex: 1;
     min-width: 130px;
+  }
+
+  .scroll-down {
+    display: block;
   }
 
   .link-card {
