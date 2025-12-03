@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark">
+  <title>Umar Sahy | Creative Designer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/logo.jpg" type="image/x-icon" />
+  <script src="https://kit.fontawesome.com/2c2b6228bd.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="container1 nav-bar">
+      <div class="logo">U_Sahy</div>
+      <i class="fa-solid fa-bars" id="menuBtn" style="color: #0071e3;" onclick="openmenu()"></i>
+    </div>
+      <nav>
+        <ul id="sidemenu" class="mobile-bar">
+          <li><a href="index.html">Home</a></li>
+          <hr class="hrow">
+          <li><a href="resume.html">About</a></li>
+          <hr class="hrow">
+          <li><a href="projects.html">Projects</a></li>
+          <hr class="hrow">
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <hr class="hrowLast">
+          <li class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <span class="toggle-text" id="themeToggleText">Dark</span>
+            <span id="sunIcon" title="OFF"><i class="fa-solid fa-toggle-off fa-lg" style="color: #0071e3;"></i>
+              <!--<span class="toggle-text" id="themeToggleText">Dark</span>-->
+            </span>
+            <span id="moonIcon" title="ON"><i class="fa-solid fa-toggle-on fa-lg" style="color: #0071e3;"></i>
+              
+            </span>
+          </li>
+          <i class="fa-solid fa-xmark" id="closeBtn" style="color: #0071e3;" onclick="closemenu()"></i>
+        </ul>
+          
+      </nav>
+    </header>
+
+    <section class="contact1 container animate-on-scroll">
+        <h1>Contact Me</h1>
+    <p class="subtitle animate-on-scroll">Feel free to reach out — I’d love to connect with you!</p>
+    <div class="contact-grid">
+      <div class="contact-form animate-on-scroll" id="contactForm">
+            <h2>Send a Message</h2>
+            <form name="submit-to-sheet">
+                <label for="name">Full Name</label>
+                <input type="text" name="Name" placeholder="" required>
+                <label for="email">Email Address</label>
+                <input type="email" name="Email" placeholder="" required>
+                <label for="phone">Phone Number</label>
+                <input type="phone" name="Phone" placeholder="" required>
+                <label for="message">Your Message</label>
+                <textarea name="Message" rows="5" placeholder=""></textarea>
+                <!--<div id="formMessage" style="display:none;"></div>-->
+                <div id="formMessage"><p>Sending...</p>
+                  <p style="font-style: italic; font-family: sans-serif; font-size: 12px; color: #0071e3;"> (You will receive an automated confirmation email.)</p>
+                  <div class="loading-bar">
+                    <div class="loading-fill"></div>
+                  </div>
+                </div>
+                <button type="submit" id="sendBtn" class="btn-primary animate-on-scroll">Send Message</button>
+            </form>
+        </div>
+        <hr class="hrow animate-on-scroll">
+        <div class="contact-info animate-on-scroll">
+        <h2>Get In Touch</h2>
+        <div class="get-in-touch animate-on-scroll" style="margin-bottom: 15px;">
+          <p>Have a project in mind, a question, or just want to say hi? Use the form or connect with me on my social links below.</p>
+          <ul>
+            <li><strong>Email:</strong> <a href="mailto:sahy.contact@gmail.com">sahy.contact@gmail.com</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+94765635257">+94 76 563 5257</a></li>
+            <li><strong>Location:</strong> Puttalam, Sri Lanka</li>
+          </ul>
+          <div class="social-links animate-on-scroll">
+            <a href="https://www.linkedin.com/in/umar-sahy/" target="_blank" class="btn-primary">LinkedIn</a>
+            <a href="mailto:sahy.contact@gmail.com" class="btn-outline">Email Me</a>
+          </div>
+          <div class="soc-link animate-on-scroll">
+            <a href="https://www.linkedin.com/in/umar-sahy?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.instagram.com/umar_sahy/"target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1AKN2XeqJQ/"target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://x.com/umar_sahy?t=O_5asoe6HW6VXsmYaW0Lng&s=35"target="_blank"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="resume container"  id="edu-link" style="display: none;">
+  <div class="resume-section cv-buttons">
+          <h2></h2>
+          <div class="cv-actions1" style="margin-bottom:15px; margin-top: 15px;">
+            <a href="Umar_Sahy_CV.pdf" target="_blank" class="btn-primary">View CV</a>
+            <a href="javascript:void(0)" id="forceDownload" class="btn-outline">
+              <i class="bi bi-file-earmark-arrow-down-fill" style="margin-right: 15px;"></i>  
+              CV
+            </a>
+          </div>
+        </div>
+      </section>
+
+  <section class="floating-social">
+  <div class="floating-wrapper">
+    <a href="index.html" class="social-item hidden"><i class="bi bi-house-fill" style="margin-left: 10px;"></i></a>
+    <a href="contact.html" class="social-item hidden"><i class="bi bi-chat-dots-fill"></i></a>
+    <button id="theme-switch" class="social-item hidden">
+      <i class="bi bi-sun-fill"></i>
+      <i class="bi bi-moon-stars-fill"></i>
+    </button>
+    <button class="toggle-social">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+</section>
+
+  <footer>
+    <p>©&nbsp; <span id="year"></span> Designed by <span><a style="text-decoration: none; color: #0071e3;" href="https://www.linkedin.com/in/umar-sahy/" target="_blank"> Umar Sahy</span><span style="color:var(--text); cursor: default;">&nbsp;with</span><a id="meet" href="https://www.mantixlk.com" target="_blank">&nbsp;zolomo</a></p>
+    <p style="margin-top: -10px; margin-bottom: -5px;"> v.2.25.1</p>
+  </footer>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx-Si0XdSTXUNlAJlDSJqYXetT8JKr_g4-5wDC8pbioYwNvjh8OZSQfwEVjWuxJB1Xr/exec';
+    const form = document.forms['submit-to-sheet'];
+    const sendBtn = document.getElementById('sendBtn');
+    const msg = document.getElementById('formMessage');
+
+    if (form) {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // 1. START LOADING STATE
+            //msg.classList.remove('fade-out'); 
+            msg.style.display = 'flex'; // Shows the loading message and animation
+            sendBtn.disabled = true; // Prevents re-submission
+
+            // Smooth loading bar animation
+            const fillBar = msg.querySelector('.loading-fill');
+            if (fillBar) {
+              fillBar.style.width = '0%';         // reset bar
+              fillBar.style.animation = 'none';   // reset animation if reused
+              void fillBar.offsetWidth;           // trigger reflow (restart animation)
+              fillBar.style.animation = 'loadingProgress 2s linear forwards';
+            }
+
+
+
+            // 2. SUBMIT TO GOOGLE SHEETS
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    // SUCCESS HANDLING
+                    
+                    // a. Start fade out animation for the loading message
+                   // msg.classList.add('fade-out');
+
+                    // b. After the fade-out delay (600ms), finalize UI changes
+                    setTimeout(() => {
+                        msg.style.display = 'none'; 
+                        //msg.classList.remove('fade-out');
+                        
+                        // c. Show success alert and reset
+                        alert('Message sent successfully ✅ \nCheck your inbox for the confirmation email 📥');
+                        form.reset();
+                        sendBtn.disabled = false;
+                        
+                        // *** FINAL CHANGE: RELOAD THE PAGE ***
+                        window.location.reload(); 
+                        
+                    }, 600); 
+                })
+                .catch(error => {
+                    // ERROR HANDLING
+                    
+                    // Immediate UI cleanup and error alert
+                    msg.style.display = 'none'; // Hide the loading message immediately
+                    alert('Error sending message ❌');
+                    console.error('Error!', error.message);
+                    sendBtn.disabled = false; // Re-enable button on failure
+                });
+        });
+    }
+
+    // SOCIAL TOGGLE
+    // Floating Social Toggle Logic (Place at the end of <body>)
+const toggleSocialBtn = document.querySelector(".toggle-social");
+const floatingWrapper = document.querySelector(".floating-wrapper");
+const socialItems = document.querySelectorAll(".social-item");
+let socialOpen = false;
+
+if (toggleSocialBtn && floatingWrapper && socialItems.length > 0) {
+    toggleSocialBtn.addEventListener("click", () => {
+        socialOpen = !socialOpen;
+        
+        // Toggle the 'open' class on the wrapper
+        floatingWrapper.classList.toggle("open", socialOpen);
+
+        if (socialOpen) {
+            // OPENING: Icons appear left-to-right
+            socialItems.forEach((icon, index) => {
+                setTimeout(() => {
+                    // Set to 'show'
+                    icon.classList.add("show");
+                    icon.classList.remove("hidden");
+                }, index * 80); // Stagger delay
+            });
+        } else {
+            // CLOSING: Icons disappear right-to-left
+            const numItems = socialItems.length;
+            socialItems.forEach((icon, index) => {
+                // Calculate reverse index for animation
+                setTimeout(() => {
+                    // Set back to 'hidden'
+                    icon.classList.remove("show");
+                    icon.classList.add("hidden");
+                }, (numItems - 1 - index) * 80); 
+            });
+        }
+    });
+}
+</script>
+  <script src="js/script.js"></script>
+</body>
+</html>

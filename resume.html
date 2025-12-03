@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark">
+  <title>Umar Sahy | Creative Designer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/logo.jpg" type="image/x-icon" />
+  <script src="https://kit.fontawesome.com/2c2b6228bd.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="container1 nav-bar">
+      <div class="logo">U_Sahy</div>
+      <i class="fa-solid fa-bars" id="menuBtn" style="color: #0071e3;" onclick="openmenu()"></i>
+    </div>
+      <nav>
+        <ul id="sidemenu" class="mobile-bar">
+          <li><a href="index.html">Home</a></li>
+          <hr class="hrow">
+          <li><a href="resume.html" class="active">About</a></li>
+          <hr class="hrow">
+          <li><a href="projects.html">Projects</a></li>
+          <hr class="hrow">
+          <li><a href="contact.html">Contact</a></li>
+          <hr class="hrowLast">
+          <li class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <span class="toggle-text" id="themeToggleText">Dark</span>
+            <span id="sunIcon" title="OFF"><i class="fa-solid fa-toggle-off fa-lg" style="color: #0071e3;"></i>
+              <!--<span class="toggle-text" id="themeToggleText">Dark</span>-->
+            </span>
+            <span id="moonIcon" title="ON"><i class="fa-solid fa-toggle-on fa-lg" style="color: #0071e3;"></i>
+              
+            </span>
+          </li>
+          <i class="fa-solid fa-xmark" id="closeBtn" style="color: #0071e3;" onclick="closemenu()"></i>
+        </ul>
+          
+      </nav>
+    
+
+
+    <!--<div class="container1 nav-bar">
+      <div class="logo">U_Sahy</div>
+      <nav>
+        <ul id="sidemenu" class="mobile-bar">
+          <li><a href="index.html" class="active">Home</a></li>
+          <hr class="hrow">
+          <li><a href="resume.html">About</a></li>
+          <hr class="hrow">
+          <li><a href="projects.html">Projects</a></li>
+          <hr class="hrow">
+          <li><a href="contact.html">Contact</a></li>
+          <hr class="hrow">
+          <li class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <span class="toggle-text" id="themeToggleText">Dark</span>
+            <span id="sunIcon" title="OFF"><i class="fa-solid fa-toggle-off fa-lg" style="color: #0071e3;"></i>
+              
+            </span>
+            <span id="moonIcon" title="ON"><i class="fa-solid fa-toggle-on fa-lg" style="color: #0071e3;"></i>
+              
+            </span>
+          </li>
+          <i class="fa-solid fa-xmark" id="closeBtn" style="color: #0071e3;" onclick="closemenu()"></i>
+        </ul>
+          <i class="fa-solid fa-bars" id="menuBtn" style="color: #0071e3;" onclick="openmenu()"></i>
+      </nav>
+    </div>-->
+  </header>
+
+ <section class="resume1 container  animate-on-scroll">
+    <h1>About Me</h1>
+    <p>I’m currently pursuing my <strong>BSc (Hons) in Data Science</strong> at the <strong>Sri Lanka Technology Campus (SLTC)</strong>. I have strong interests in data analysis, visualization, and creative design. Alongside my studies, I volunteer as a <strong>Graphic Designer</strong> for the SLTC Student Interactive Society (SIS) and also work as a freelance designer.
+    </p>
+  </section>
+
+ <section class="resume container  animate-on-scroll"  id="edu-link">
+  <h1>My Resume</h1>
+  <p class="subtitle animate-on-scroll">Here’s a summary of my academic background, experience, and skills.</p>
+  <div class="resume-section animate-on-scroll">
+    <h2>Education</h2>
+    <ul class="timeline animate-on-scroll">
+      <li>
+        <strong>BSc (Hons) in Data Science</strong> — Sri Lanka Technology Campus (SLTC)<span class="muted">Apr 2024 – Expected 2028</span>
+      </li>
+      <li><strong>G.C.E. A/L – Technology Stream</strong> — Mercy Education Campus</li>
+    </ul>
+
+<div style="margin:30px 0; overflow-x:auto; display:flex; justify-content:center;" class=" animate-on-scroll">
+  <table style="
+  width:85%;
+  border-collapse:collapse;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  box-shadow:0 2px 10px rgba(0,0,0,0);
+  border-radius:8px;
+  overflow:hidden;
+  ">
+  <thead style="background:rgba(0, 113, 227, 0.15); color:#0071e3;">
+    <tr>
+      <th style="text-align:left; padding:12px;">Course</th>
+      <th style="text-align:left; padding:12px;">Grades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:color-mix(in srgb, var(--border) 30%, transparent)">
+      <td style="padding:12px;">Engineering Technology</td>
+      <td style="padding:12px;" id="exp-link">C</td>
+    </tr>
+    <tr style="background:color-mix(in srgb, var(--border) 45%, transparent)">
+      <td style="padding:12px;">Science for Technology</td>
+      <td style="padding:12px;">S</td>
+    </tr>
+    <tr style="background:color-mix(in srgb, var(--border) 30%, transparent)">
+      <td style="padding:12px;">Information and Communication Technology</td>
+      <td style="padding:12px;">S</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      
+      <div class="resume-section  animate-on-scroll">
+        <h2>Experience</h2>
+        <ul class="timeline">
+          <li id="ski-link"><strong>Graphic Designer (Volunteer)</strong> — SLTC Student Interactive Society (SIS)<span class="muted"> 2024 – Present</span>
+          <p>Creating event graphics, digital posters, and media content for campus activities.</p>
+        </li>
+        <li><strong>Freelance Graphic Designer</strong><span class="muted"> 2023 – Present</span>
+          <p>Working with clients on creative branding, logo design, and digital assets.</p></li>
+        </ul>
+      </div>
+
+      <div class="resume-section  animate-on-scroll">
+        <h2>Skills</h2>
+        <p style="font-weight: 700; margin-bottom:10px;">Technical Skills</p>
+        <div class="skills">
+          <span>Python</span>
+          <span>Data Analysis</span>
+          <span>SQL</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>Graphic Design</span>
+          <span>Photoshop</span>
+          <span>Canva</span>
+          <span>Web Development</span>
+        </div>
+        <p style="font-weight: 700; margin-bottom:10px; margin-top: 15px;"  id="lan-link">Professional Skills</p>
+        <div class="skills">
+          <span>Leadership</span>
+          <span>Professionalism</span>
+          <span>Teamwork</span>
+          <span>Time Management</span>
+          <span>Prioritization</span>
+          <span>Strategic Planning</span>
+          <span>Decision Making</span>
+          <span>Active Listening</span>
+          <span>Collaboration</span>
+        </div>
+      </div>
+
+    <div class="contact-grid">
+        <div class="contact-info  animate-on-scroll">
+      <div class="resume-section  animate-on-scroll">
+        <section class="languages animate-on-scroll">
+          <h2>Language Fluency</h2>
+          <div class="language side">
+            <span>English</span>
+            <div class="bar">
+              <div class="fill" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="language side">
+            <span>Tamil</span>
+            <div class="bar">
+              <div class="fill" style="width: 100%;"></div>
+            </div>
+          </div>
+          <div class="language side">
+            <span>Sinhala</span>
+            <div class="bar">
+              <div class="fill" style="width: 65%;"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    
+        <section class="languages  animate-on-scroll" style="justify-content: center; align-items: center; " id="hobbies">
+          <h2 style="text-align:center;" class="side2">Hobbies</h2>
+          <div class="side1">
+          <i class="bi bi-dot" style="color: #0071e3; font-size: 35px;"></i> <p style="text-decoration: none; color: var(--text); font-size:20px; margin-top:-45px; margin-left:50px;">Photography</p>
+          <i class="bi bi-dot" style="color: #0071e3; font-size: 35px;"></i> <p style="text-decoration: none; color: var(--text); font-size:20px; margin-top:-45px; margin-left:50px;">Coding</p>
+          <i class="bi bi-dot" style="color: #0071e3; font-size: 35px;"></i> <p style="text-decoration: none; color: var(--text); font-size:20px; margin-top:-45px; margin-left:50px;">Travelling</p>
+          <i class="bi bi-dot" style="color: #0071e3; font-size: 35px;"></i> <p style="text-decoration: none; color: var(--text); font-size:20px; margin-top:-45px; margin-left:50px;">Reading</p></div>
+        </section>
+  </div>
+
+        <div class="resume-section cv-buttons  animate-on-scroll">
+          <h2></h2>
+          <div class="cv-actions1" style="margin-bottom:15px; margin-top: 15px;">
+            <a href="Umar_Sahy_CV.pdf" target="_blank" class="btn-primary">View CV</a>
+            <a href="javascript:void(0)" id="forceDownload" class="btn-outline">
+              <i class="bi bi-file-earmark-arrow-down-fill" style="margin-right: 15px;"></i>  
+              CV
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="floating-social">
+  <div class="floating-wrapper">
+    <a href="index.html" class="social-item hidden"><i class="bi bi-house-fill" style="margin-left: 10px;"></i></a>
+    <a href="contact.html" class="social-item hidden"><i class="bi bi-chat-dots-fill"></i></a>
+    <button id="theme-switch" class="social-item hidden">
+      <i class="bi bi-sun-fill"></i>
+      <i class="bi bi-moon-stars-fill"></i>
+    </button>
+    <button class="toggle-social">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+</section>
+
+
+  <footer>
+    <p>©&nbsp; <span id="year"></span> Designed by <span><a style="text-decoration: none; color: #0071e3;" href="https://www.linkedin.com/in/umar-sahy/" target="_blank"> Umar Sahy</span><span style="color:var(--text); cursor: default;">&nbsp;with</span><a id="meet" href="https://www.mantixlk.com" target="_blank">&nbsp;zolomo</a></p>
+    <p style="margin-top: -10px; margin-bottom: -5px;"> v.2.25.1</p>
+  </footer>
+
+  <script>
+    
+
+    // SOCIAL TOGGLE
+    // Floating Social Toggle Logic (Place at the end of <body>)
+const toggleSocialBtn = document.querySelector(".toggle-social");
+const floatingWrapper = document.querySelector(".floating-wrapper");
+const socialItems = document.querySelectorAll(".social-item");
+let socialOpen = false;
+
+if (toggleSocialBtn && floatingWrapper && socialItems.length > 0) {
+    toggleSocialBtn.addEventListener("click", () => {
+        socialOpen = !socialOpen;
+        
+        // Toggle the 'open' class on the wrapper
+        floatingWrapper.classList.toggle("open", socialOpen);
+
+        if (socialOpen) {
+            // OPENING: Icons appear left-to-right
+            socialItems.forEach((icon, index) => {
+                setTimeout(() => {
+                    // Set to 'show'
+                    icon.classList.add("show");
+                    icon.classList.remove("hidden");
+                }, index * 80); // Stagger delay
+            });
+        } else {
+            // CLOSING: Icons disappear right-to-left
+            const numItems = socialItems.length;
+            socialItems.forEach((icon, index) => {
+                // Calculate reverse index for animation
+                setTimeout(() => {
+                    // Set back to 'hidden'
+                    icon.classList.remove("show");
+                    icon.classList.add("hidden");
+                }, (numItems - 1 - index) * 80); 
+            });
+        }
+    });
+}
+</script>
+  <script src="js/script.js"></script>
+</body>
+</html>
