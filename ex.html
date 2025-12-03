@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; color: #333; }
+        
+        /* Navigation */
+        .nav { display: flex; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .nav button { flex: 1; padding: 16px; border: none; background: none; font-weight: 700; font-size: 15px; color: #999; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.3s ease; }
+        .nav button.active { color: #007bff; border-bottom: 3px solid #007bff; background: #f8fbff; }
+
+        .container { padding: 20px; max-width: 600px; margin: 0 auto; padding-bottom: 80px;}
+        .page { display: none; animation: slideUp 0.3s ease-out; }
+        .page.active { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Form Styling */
+        .card { background: #fff; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+       /* Custom Input & Calendar Styling */
+        input, select { 
+            width: 100%; padding: 14px; border: 2px solid #eee; border-radius: 10px; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; background: #fff; color: #333; font-family: inherit; 
+            /* Added this line to fix date picker on some mobile views */
+            cursor: pointer; 
+        }
+        input:focus, select:focus { border-color: #007bff; box-shadow: 0 0 0 4px rgba(0,123,255,0.1); }
+        
+        /* Specifically style the Date Picker for better UI */
+        input[type="date"] {
+            /* Remove our custom icon attempt */
+            /* background-image: none; */ 
+            /* background-repeat: no-repeat;
+            background-position: right 15px center; */
+            padding-right: 14px; /* Reset padding */
+        }
+        /* Make the native calendar icon fully visible and clickable */
+        ::-webkit-calendar-picker-indicator {
+             /* Reset opacity to default/full */
+            opacity: 1; 
+            cursor: pointer;
+            margin-right: -5px; /* Pull it slightly to the right */
+        }
+
+
+        .btn-submit { width: 100%; padding: 16px; background-color: #007bff; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 6px rgba(0,123,255,0.2); transition: 0.2s; }
+        .btn-submit:active { transform: scale(0.97); }
+
+        /* Dashboard Global Balance */
+        .main-balance-card { background: linear-gradient(135deg, #007bff, #0056b3); color: white; padding: 20px; border-radius: 16px; text-align: center; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(0,123,255,0.3); }
+        .main-balance-lbl { font-size: 14px; opacity: 0.9; }
+        .main-balance-val { font-size: 32px; font-weight: bold; margin-top: 5px; }
+
+        /* Monthly Summary Cards */
+        .month-section { margin-bottom: 25px; }
+        .month-header { font-size: 18px; font-weight: bold; color: #444; margin-bottom: 10px; padding-left: 5px; border-left: 4px solid #007bff; padding-left: 10px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .month-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow: hidden; margin-bottom: 15px; }
+        
+        /* Month Totals Strip */
+        .month-totals { display: flex; background: #f8f9fa; border-bottom: 1px solid #eee; padding: 10px 0; }
+        .m-stat { flex: 1; text-align: center; font-size: 13px; }
+        .m-stat span { display: block; font-weight: bold; font-size: 15px; margin-top: 2px; }
+        
+        /* Details List (Category Summary) */
+        .detail-row { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid #f4f4f4; font-size: 14px; }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-name { color: #555; font-weight: 500; }
+        .detail-amt { font-weight: bold; }
+
+        /* Recent Transactions Table */
+        .table-wrapper { overflow-x: auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; min-width: 500px; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
+        th { background-color: #f8f9fa; font-weight: 600; color: #555; }
+        .recent-table tbody tr:last-child td { border-bottom: none; }
+        .date-col { width: 20%; }
+        .amount-col { width: 20%; text-align: right; }
+
+        .green { color: #28a745; }
+        .red { color: #dc3545; }
+        
+        /* Loading */
+        #loading { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 200; align-items: center; justify-content: center; flex-direction: column; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #007bff; border-radius: 50%; width: 40px; height: 40px; animation: spin 0.8s linear infinite; margin-bottom: 15px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <button id="btnForm" class="active" onclick="switchTab('form')">Entry Form</button>
+        <button id="btnDash" onclick="switchTab('dash')">Dashboard</button>
+    </div>
+
+    <div class="container">
+        
+        <div id="page-form" class="page active">
+            <div class="card">
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label>Select Date</label>
+                        <input type="date" id="date" required onchange="autoSetDay()">
+                    </div>
+                    <div class="form-group">
+                        <label>Day</label>
+                        <select id="day" required>
+                            <option value="MON">MON</option>
+                            <option value="TUE">TUE</option>
+                            <option value="WED">WED</option>
+                            <option value="THU">THU</option>
+                            <option value="FRI">FRI</option>
+                            <option value="SAT">SAT</option>
+                            <option value="SUN">SUN</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="location" placeholder="e.g. Home, Office" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Details / Category</label>
+                        <input type="text" id="details" placeholder="e.g. Food, Transport" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="transType" required>
+                            <option value="Debit">Debit (Expense)</option>
+                            <option value="Credit">Credit (Income)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" id="amount" step="0.01" placeholder="0.00" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Entry</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="page-dash" class="page">
+            
+            <div class="main-balance-card">
+                <div class="main-balance-lbl">Current Balance</div>
+                <div class="main-balance-val" id="d-bal">0.00</div>
+            </div>
+
+            <h3 style="margin-top:0;">Monthly Breakdown</h3>
+            <div id="monthly-container">
+                <div style="text-align:center; color:#999; padding:20px;">Loading data...</div>
+            </div>
+
+            <h3>Recent Transactions</h3>
+            <div class="table-wrapper">
+                <table class="recent-table">
+                    <thead>
+                        <tr>
+                            <th class="date-col">Date</th>
+                            <th>Details</th>
+                            <th class="amount-col">Amount</th>
+                            <th class="amount-col">Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr><td colspan="4" style="text-align:center;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="loading">
+        <div class="spinner"></div>
+        <div id="loading-text">Processing...</div>
+    </div>
+
+    <script>
+        // CRITICAL: REPLACE THIS URL WITH YOUR DEPLOYMENT URL
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzf-rIDxYiGBfb2HOXWWWPcKupbBtlZH7BmTWs2skR-YNC6a4IKQLJtFpOjMNgu4ZOE/exec"; 
+        
+        // 1. Tab Switching
+        function switchTab(tab) {
+            document.getElementById('btnForm').classList.toggle('active', tab === 'form');
+            document.getElementById('btnDash').classList.toggle('active', tab === 'dash');
+            document.getElementById('page-form').classList.toggle('active', tab === 'form');
+            document.getElementById('page-dash').classList.toggle('active', tab === 'dash');
+            
+            if(tab === 'dash') fetchDashboardData();
+        }
+
+        // 2. Auto Day
+        function autoSetDay() {
+            const d = document.getElementById('date').value;
+            if(!d) return;
+            const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+            document.getElementById('day').value = days[new Date(d).getDay()];
+        }
+
+        // 3. Form Submit
+        document.getElementById('expenseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showLoading(true, "Saving...");
+
+            const params = new URLSearchParams({
+                op: 'submit',
+                date: document.getElementById('date').value,
+                day: document.getElementById('day').value,
+                location: document.getElementById('location').value,
+                details: document.getElementById('details').value,
+                type: document.getElementById('transType').value,
+                amount: document.getElementById('amount').value
+            });
+
+            fetch(SCRIPT_URL + "?" + params.toString())
+            .then(res => res.json())
+            .then(data => {
+                showLoading(false);
+                alert("Submitted Successfully!");
+                document.getElementById('expenseForm').reset();
+                document.getElementById('date').valueAsDate = new Date();
+                autoSetDay();
+            })
+            .catch(err => {
+                showLoading(false);
+                alert("Error: " + err);
+            });
+        });
+
+        // 4. Fetch & Process Dashboard
+        function fetchDashboardData() {
+            fetch(SCRIPT_URL + "?op=read")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('d-bal').innerText = fmt(data.summary.bal);
+                renderMonthlySummaries(data.records);
+                renderRecentTransactions(data.records);
+            })
+            .catch(err => {
+                document.getElementById('monthly-container').innerHTML = "<p style='text-align:center'>Failed to load data. Check URL and access permissions.</p>";
+            });
+        }
+
+        function renderMonthlySummaries(records) {
+            const container = document.getElementById('monthly-container');
+            container.innerHTML = "";
+
+            if (!records || records.length === 0) {
+                container.innerHTML = "<p style='text-align:center'>No transactions to summarize.</p>";
+                return;
+            }
+
+            const groups = {};
+            
+            records.forEach(row => {
+                const dateObj = new Date(row[0]);
+                // Create key "2023-11" (Year-Month)
+                const monthKey = dateObj.getFullYear() + "-" + dateObj.getMonth();
+                
+                if (!groups[monthKey]) {
+                    groups[monthKey] = {
+                        label: dateObj.toLocaleString('default', { month: 'long', year: 'numeric' }),
+                        totalCred: 0,
+                        totalDeb: 0,
+                        details: {} 
+                    };
+                }
+
+                const isCred = row[4] !== "";
+                const amt = Number(isCred ? row[4] : row[5] || 0);
+                
+                if (isCred) groups[monthKey].totalCred += amt;
+                else groups[monthKey].totalDeb += amt;
+
+                // Category/Detail breakdown (only for Debits)
+                if (!isCred) {
+                    let detailName = row[3].trim();
+                    // Normalize name (e.g., "lunch" or "Lunch" becomes "Lunch")
+                    detailName = detailName.charAt(0).toUpperCase() + detailName.slice(1).toLowerCase();
+
+                    if (!groups[monthKey].details[detailName]) groups[monthKey].details[detailName] = 0;
+                    groups[monthKey].details[detailName] += amt;
+                }
+            });
+
+            // Sort by newest month first
+            const sortedKeys = Object.keys(groups).sort((a,b) => {
+                const [y1, m1] = a.split('-').map(Number);
+                const [y2, m2] = b.split('-').map(Number);
+                return (y2 - y1) || (m2 - m1); 
+            });
+
+            // Build HTML
+            sortedKeys.forEach(key => {
+                const g = groups[key];
+                
+                // Sort Details by amount (highest spend first)
+                const sortedDetails = Object.entries(g.details).sort((a,b) => b[1] - a[1]);
+
+                let detailsHtml = "";
+                sortedDetails.forEach(([name, val]) => {
+                    detailsHtml += `
+                        <div class="detail-row">
+                            <span class="detail-name">${name}</span>
+                            <span class="detail-amt red">${fmt(val)}</span>
+                        </div>
+                    `;
+                });
+                
+                // Only show Debits in the details section (most relevant for spending categories)
+                if (detailsHtml === "") detailsHtml = '<div style="padding: 15px; text-align: center; color:#999; font-style:italic;">No recorded debits this month.</div>';
+
+                const html = `
+                    <div class="month-section">
+                        <div class="month-header">
+                            ${g.label}
+                        </div>
+                        <div class="month-card">
+                            <div class="month-totals">
+                                <div class="m-stat green">
+                                    Credit
+                                    <span>${fmt(g.totalCred)}</span>
+                                </div>
+                                <div class="m-stat red">
+                                    Debit
+                                    <span>${fmt(g.totalDeb)}</span>
+                                </div>
+                                <div class="m-stat" style="color:#007bff">
+                                    Net
+                                    <span>${fmt(g.totalCred - g.totalDeb)}</span>
+                                </div>
+                            </div>
+                            <h4 style="padding: 10px 20px 0; margin: 0; font-size: 15px; color:#555;">Category Spend:</h4>
+                            <div class="month-details">
+                                ${detailsHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        function renderRecentTransactions(records) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = "";
+            
+            if (!records || records.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No records found.</td></tr>';
+                return;
+            }
+
+            // Show top 20 recent records
+            records.slice(0, 20).forEach(row => {
+                // row indices: [Date, Day, Location, Details, Credit, Debit, Balance]
+                const isCred = row[4] !== ""; 
+                const amt = isCred ? row[4] : row[5];
+                const cls = isCred ? "green" : "red";
+                const sign = isCred ? "+" : "-";
+
+                const dateParts = new Date(row[0]); 
+                const niceDate = dateParts.getDate() + "/" + (dateParts.getMonth()+1);
+
+                const tr = `<tr>
+                    <td class="date-col">${niceDate} <br><small style="color:#999">${row[1]}</small></td>
+                    <td>${row[3]} <br><small style="color:#999">${row[2]}</small></td>
+                    <td class="amount-col ${cls}"><b>${sign}${fmt(amt)}</b></td>
+                    <td class="amount-col" style='color:#666'>${fmt(row[6])}</td>
+                </tr>`;
+                tbody.innerHTML += tr;
+            });
+        }
+
+        function fmt(num) {
+            return Number(num).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        function showLoading(show, text) {
+            const el = document.getElementById('loading');
+            if(show) {
+                document.getElementById('loading-text').innerText = text;
+                el.style.display = 'flex';
+            } else {
+                el.style.display = 'none';
+            }
+        }
+
+        window.onload = function() {
+            document.getElementById('date').valueAsDate = new Date();
+            autoSetDay();
+        };
+    </script>
+</body>
+</html>
