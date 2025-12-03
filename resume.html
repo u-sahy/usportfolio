@@ -77,6 +77,8 @@
     </p>
   </section>
 
+  <p class="scroll-down"> Scroll Down <i class="bi bi-chevron-compact-down"></i></p>
+
  <section class="resume container  animate-on-scroll"  id="edu-link">
   <h1>My Resume</h1>
   <p class="subtitle animate-on-scroll">Here’s a summary of my academic background, experience, and skills.</p>
@@ -272,6 +274,35 @@ if (toggleSocialBtn && floatingWrapper && socialItems.length > 0) {
         }
     });
 }
+
+
+// scroll down
+document.addEventListener('DOMContentLoaded', function() {
+        const scrollIndicator = document.querySelector('.scroll-down');
+        
+        // Define the function that handles the scroll check
+        function checkScroll() {
+            // Check if the vertical scroll position (scrollY) is greater than a threshold (e.g., 10 pixels)
+            if (window.scrollY > 10) { 
+                // 1. Add the 'hidden' class to fade it out
+                scrollIndicator.classList.add('hidden'); 
+
+                // 2. Remove the event listener permanently after the first scroll
+                window.removeEventListener('scroll', checkScroll);
+                
+                // Optional: You could completely remove the element from the DOM after a small delay 
+                // to match the fade-out transition duration (0.3s as per the CSS).
+                /*
+                setTimeout(() => {
+                    scrollIndicator.remove();
+                }, 300);
+                */
+            }
+        }
+
+        // Attach the function to the window's scroll event
+        window.addEventListener('scroll', checkScroll);
+    });
 </script>
   <script src="js/script.js"></script>
 </body>
