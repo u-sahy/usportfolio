@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umar Sahy | Profile</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+        background: #ffffff; /* Clean white background */
+        color: #1c1e21;      /* Dark gray for readability */
+    }
+
+    /* HERO */
+    .hero {
+        min-height: 85vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        background: #f0f2f5; /* Light gray Meta-style background section */
+    }
+
+    .hero-inner {
+        max-width: 1100px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 50px;
+        align-items: center;
+    }
+
+    .hero-text h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        color: #050505;
+        letter-spacing: -1px;
+    }
+
+    .hero-text p {
+        font-size: 1.2rem;
+        color: #65676b; /* Soft gray for subheader */
+        font-weight: 500;
+    }
+
+    .hero-img img {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 24px;
+        object-fit: cover;
+        /* Softer shadow for light mode */
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
+    }
+
+    /* CONTENT */
+    .content {
+        max-width: 800px;
+        margin: auto;
+        padding: 80px 20px 40px;
+    }
+
+    .content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 24px;
+        color: #4b4d50;
+    }
+
+    /* LINKS */
+    .links {
+        max-width: 800px;
+        margin: 10px auto 60px;
+        padding: 0 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .links a {
+        text-decoration: none;
+        color: #1c1e21;
+        border: 1px solid #dddfe2;
+        padding: 12px 20px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #f0f2f5;
+        transition: all 0.2s cubic-bezier(.08,.52,.52,1);
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    .links a:hover {
+        background: #e4e6eb;
+        border-color: #ccd0d5;
+        transform: scale(1.02);
+    }
+
+    /* Primary CTA Style for Email 
+    .links a:first-child {
+        background: #0084ff;
+        color: #fff;
+        border-color: #0084ff;
+    }
+
+    .links a:first-child:hover {
+        background: #0073e6;
+    }*/
+
+    /* FOOTER */
+    .footer {
+        text-align: center;
+        padding: 40px 20px 60px;
+        font-size: 0.9rem;
+        color: #8a8d91;
+        letter-spacing: 0.5px;
+    }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(25px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .animate-on-scroll.in-view {
+         opacity: 1;
+         transform: translateY(0);  
+    }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 900px) {
+        .hero {
+            min-height: auto;
+            padding-top: 80px;
+        }
+        
+        .hero-inner {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+        }
+
+        .hero-img {
+            order: -1; /* Image appears first on mobile */
+        }
+
+        .hero-img img {
+            max-width: 280px;
+        }
+
+        .links {
+            justify-content: center;
+        }
+    }
+</style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-text animate-on-scroll">
+            <h1>Umar Sahy</h1>
+            <p>Data Science Undergraduate & Creative Designer</p>
+        </div>
+        <div class="hero-img animate-on-scroll">
+            <img src="images/profile.jpg" alt="Umar Sahy">
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <p class="animate-on-scroll">
+        <strong>Umar Sahy</strong> is a Data Science undergraduate and a creative designer dedicated to bridging the gap between analytical insights and visual storytelling. He is currently pursuing a BSc (Hons) in Data Science at the Sri Lanka Technology Campus (SLTC).
+    </p>
+
+     <p class="animate-on-scroll">
+        As a versatile creator, Umar serves as a Volunteer Graphic Designer for the SLTC Student Interactive Society (SIS), designing digital content for campus-wide activities. He has been an active Freelance Graphic Designer since 2023, developing brand identities for a diverse range of clients.
+    </p>
+
+     <p class="animate-on-scroll">
+        Technical expertise spans <strong>Python, SQL, and Java</strong> for data analysis, as well as <strong>Photoshop and Canva</strong> for high-impact visual design. Umar is driven by a mission to apply art and technology to solve complex organizational problems.
+    </p>
+</section>
+
+<div class="links animate-on-scroll">
+    <a href="mailto:sahy.contact@gmail.com"><i class="bi bi-envelope-fill"></i> Email</a>
+    <a href="portfolio.html" target="_blank"><i class="bi bi-globe2"></i> Portfolio</a>
+    <a href="https://www.linkedin.com/in/umar-sahy?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="bi bi-linkedin"></i>LinkedIn</a>
+    <a href="https://www.instagram.com/umar_sahy/" target="_blank"><i class="bi bi-instagram"></i> Instagram</a>
+    <a href="https://www.facebook.com/share/1AKN2XeqJQ/" target="_blank"><i class="bi bi-facebook"></i> Facebook</a>
+    <a href="https://x.com/umar_sahy" target="_blank"><i class="bi bi-twitter-x"></i> X</a>
+</div>
+
+<div class="footer">
+    www.umarsahy.com
+</div>
+
+</body>
+<script>
+    const observerOptions = {
+        threshold: 0.1 // Triggers when 10% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                // Optional: stop observing once the animation is done
+                // observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    // Select all elements with the animation class and start observing them
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+        observer.observe(el);
+    });
+</script>
+</html>

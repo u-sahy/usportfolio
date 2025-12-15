@@ -12,6 +12,9 @@
 </head>
 
 <body>
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
   <header>
     <div class="container1 nav-bar">
       <div class="logo">U_Sahy</div>
@@ -19,13 +22,13 @@
     </div>
       <nav>
         <ul id="sidemenu" class="mobile-bar">
-          <li><a href="portfolio.html">Home</a></li>
+          <li><a href="portfolio.html" class="active">Home</a></li>
           <hr class="hrow">
           <li><a href="resume.html">About</a></li>
           <hr class="hrow">
           <li><a href="projects.html">Projects</a></li>
           <hr class="hrow">
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
           <hr class="hrowLast">
           <li class="theme-toggle" id="themeToggle" title="Toggle Theme">
             <span class="toggle-text" id="themeToggleText">Dark</span>
@@ -40,10 +43,116 @@
         </ul>
           
       </nav>
-    </header>
+    
 
-    <section class="contact1 container animate-on-scroll">
-        <h1>Contact Me</h1>
+
+    <!--<div class="container1 nav-bar">
+      <div class="logo">U_Sahy</div>
+      <nav>
+        <ul id="sidemenu" class="mobile-bar">
+          <li><a href="index.html" class="active">Home</a></li>
+          <hr class="hrow">
+          <li><a href="resume.html">About</a></li>
+          <hr class="hrow">
+          <li><a href="projects.html">Projects</a></li>
+          <hr class="hrow">
+          <li><a href="contact.html">Contact</a></li>
+          <hr class="hrow">
+          <li class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <span class="toggle-text" id="themeToggleText">Dark</span>
+            <span id="sunIcon" title="OFF"><i class="fa-solid fa-toggle-off fa-lg" style="color: #0071e3;"></i>
+              
+            </span>
+            <span id="moonIcon" title="ON"><i class="fa-solid fa-toggle-on fa-lg" style="color: #0071e3;"></i>
+              
+            </span>
+          </li>
+          <i class="fa-solid fa-xmark" id="closeBtn" style="color: #0071e3;" onclick="closemenu()"></i>
+        </ul>
+          <i class="fa-solid fa-bars" id="menuBtn" style="color: #0071e3;" onclick="openmenu()"></i>
+      </nav>
+    </div>-->
+  </header>
+
+  <section class="hero container  animate-on-scroll" id="hero-con">
+    <div class="hero-text animate-on-scroll">
+      <h1>Hi, I’m <span class="blue">Umar Sahy</span></h1>
+      <h2>Data Science Student & Creative Designer</h2>
+      <p>I’m passionate about combining analytical thinking and creativity to build smart data solutions and beautiful digital experiences.
+      </p>
+      <div class="hero-buttons animate-on-scroll">
+        <a href="resume.html" class="btn-primary">About Me</a>
+        <a href="contact.html" class="btn-outline">Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/umar-photo.png" alt="Umar Sahy Portrait" />
+    </div>
+  </section>
+
+  <section class="about container animate-on-scroll">
+    <h1>About Me</h1>
+    <p>I’m currently pursuing my <strong>BSc (Hons) in Data Science</strong> at the <strong>Sri Lanka Technology Campus (SLTC)</strong>. I have strong interests in data analysis, visualization, and creative design. Alongside my studies, I volunteer as a <strong>Graphic Designer</strong> for the SLTC Student Interactive Society (SIS) and also work as a freelance designer.<span><a href="resume.html" style="color: #0071e3;">More</a></span>
+    </p>
+  </section>
+
+  <section class="projects container animate-on-scroll">
+    <h1 style="margin-bottom: 60px;"> My Resume</h1>
+    <div class="link-grid">
+          <div class="link-card animate-on-scroll">
+            <div class="link-info">
+              <h3>Education</h3>
+              <a href="resume.html#edu-link" target="_self">
+                <i class="fa-solid fa-circle-arrow-up fa-rotate-by" style="color: #0071e3; --fa-rotate-angle: 45deg;"></i>
+              </a>
+            </div>
+          </div>
+          <div class="link-card  animate-on-scroll">
+            <div class="link-info">
+              <h3>Experience</h3>
+              <a href="resume.html#exp-link" target="_self">
+                <i class="fa-solid fa-circle-arrow-up fa-rotate-by" style="color: #0071e3; --fa-rotate-angle: 45deg;"></i>
+              </a>
+            </div>
+          </div>
+          <div class="link-card  animate-on-scroll">
+            <div class="link-info">
+              <h3>Skills</h3>
+              <a href="resume.html#ski-link" target="_self">
+                <i class="fa-solid fa-circle-arrow-up fa-rotate-by" style="color: #0071e3; --fa-rotate-angle: 45deg;"></i>
+              </a>
+            </div>
+          </div>
+          <div class="link-card  animate-on-scroll">
+            <div class="link-info">
+              <h3>Language Fluency</h3>
+              <a href="resume.html#lan-link" target="_self">
+                <i class="fa-solid fa-circle-arrow-up fa-rotate-by" style="color: #0071e3; --fa-rotate-angle: 45deg;"></i>
+              </a>
+            </div>
+          </div>
+          <div class="link-card  animate-on-scroll">
+            <div class="link-info">
+              <h3>Hobbies</h3>
+              <a href="resume.html#lan-link" target="_self">
+                <i class="fa-solid fa-circle-arrow-up fa-rotate-by" style="color: #0071e3; --fa-rotate-angle: 45deg;"></i>
+              </a>
+            </div>
+          </div>
+          <div class="cv-actions1  animate-on-scroll">
+            <a href="Umar_Sahy_CV.pdf" target="_blank" class="btn-primary">View CV</a>
+            <a href="javascript:void(0)" id="forceDownload" class="btn-outline">
+              <i class="bi bi-file-earmark-arrow-down-fill" style="margin-right: 15px;"></i>  
+              CV
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="contact container  animate-on-scroll">
+    <h1>Contact Me</h1>
     <p class="subtitle animate-on-scroll">Feel free to reach out — I’d love to connect with you!</p>
     <div class="contact-grid">
       <div class="contact-form animate-on-scroll" id="contactForm">
@@ -91,19 +200,6 @@
       </div>
     </div>
 </section>
-
-<section class="resume container"  id="edu-link" style="display: none;">
-  <div class="resume-section cv-buttons">
-          <h2></h2>
-          <div class="cv-actions1" style="margin-bottom:15px; margin-top: 15px;">
-            <a href="Umar_Sahy_CV.pdf" target="_blank" class="btn-primary">View CV</a>
-            <a href="javascript:void(0)" id="forceDownload" class="btn-outline">
-              <i class="bi bi-file-earmark-arrow-down-fill" style="margin-right: 15px;"></i>  
-              CV
-            </a>
-          </div>
-        </div>
-      </section>
 
   <section class="floating-social">
   <div class="floating-wrapper">
