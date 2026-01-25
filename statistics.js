@@ -9,7 +9,7 @@ const CATEGORIES = [
     { name: 'Groom', color: '#48BB78', keywords: ['groom', 'haircut', 'salon', 'barber', 'spa'] },
     { name: 'Food', color: '#2D3748', keywords: ['food', 'lunch', 'dinner', 'breakfast', 'snack', 'meal', 'restaurant', 'cafe'] },
     { name: 'Reload', color: '#E53E3E', keywords: ['reload', 'topup', 'recharge', 'mobile'] },
-    { name: 'Hostel Reservation', color: '#9F7AEA', keywords: ['hostel', 'rent', 'reservation', 'accommodation'] },
+    { name: 'Rent', color: '#9F7AEA', keywords: ['hostel', 'rent', 'reservation', 'accommodation'] },
     { name: 'Monthly Fee', color: '#00B5D8', keywords: ['monthly fee', 'subscription', 'membership', 'tuition'] },
     { name: 'Other', color: '#805AD5', keywords: [] }
 ];
@@ -40,7 +40,9 @@ function fetchData() {
         showLoading(false);
         allRecords = data.records;
         populateYearSelect();
+        initializeMonthlyCheckboxes();
         initializeMonthlyChart();
+        initializeYearlyCheckboxes();
         initializeYearlyChart();
     })
     .catch(err => {
@@ -85,7 +87,35 @@ function populateYearSelect() {
     }
 }
 
+function initializeMonthlyCheckboxes() {
+    const checkboxContainer = document.getElementById('monthlyCheckboxes');
+    checkboxContainer.innerHTML = '';
+    
+    CATEGORIES.forEach((cat, index) => {
+        const div = document.createElement('div');
+        div.className = 'checkbox-item';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'monthly-cat-' + index;
+        checkbox.checked = true;
+        checkbox.onchange = updateMonthlyChart;
+        
+        const label = document.createElement('label');
+        label.htmlFor = 'monthly-cat-' + index;
+        label.innerHTML = `<span class="color-indicator" style="background:${cat.color}"></span> ${cat.name}`;
+        
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        checkboxContainer.appendChild(div);
+    });
+}
+
 function initializeMonthlyChart() {
+    updateMonthlyChart();
+}
+
+function updateMonthlyChart() {
     const now = new Date();
     const currentMonth = now.getMonth();
     const currentYear = now.getFullYear();
@@ -96,10 +126,21 @@ function initializeMonthlyChart() {
     const currentMonthData = getCategoryTotals(currentYear, currentMonth);
     const previousMonthData = getCategoryTotals(previousYear, previousMonth);
     
-    const labels = CATEGORIES.map(cat => cat.name);
-    const currentValues = labels.map(label => currentMonthData[label] || 0);
-    const previousValues = labels.map(label => previousMonthData[label] || 0);
-    const colors = CATEGORIES.map(cat => cat.color);
+    const selectedCategories = [];
+    const labels = [];
+    const currentValues = [];
+    const previousValues = [];
+    const colors = [];
+    
+    CATEGORIES.forEach((cat, index) => {
+        const checkbox = document.getElementById('monthly-cat-' + index);
+        if(checkbox && checkbox.checked) {
+            labels.push(cat.name);
+            currentValues.push(currentMonthData[cat.name] || 0);
+            previousValues.push(previousMonthData[cat.name] || 0);
+            colors.push(cat.color);
+        }
+    });
     
     const ctx = document.getElementById('monthlyChart').getContext('2d');
     
@@ -175,7 +216,7 @@ function getCategoryTotals(year, month) {
     return totals;
 }
 
-function initializeYearlyChart() {
+function initializeYearlyCheckboxes() {
     const checkboxContainer = document.getElementById('categoryCheckboxes');
     checkboxContainer.innerHTML = '';
     
@@ -185,19 +226,21 @@ function initializeYearlyChart() {
         
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.id = 'cat-' + index;
+        checkbox.id = 'yearly-cat-' + index;
         checkbox.checked = true;
         checkbox.onchange = updateYearlyChart;
         
         const label = document.createElement('label');
-        label.htmlFor = 'cat-' + index;
+        label.htmlFor = 'yearly-cat-' + index;
         label.innerHTML = `<span class="color-indicator" style="background:${cat.color}"></span> ${cat.name}`;
         
         div.appendChild(checkbox);
         div.appendChild(label);
         checkboxContainer.appendChild(div);
     });
-    
+}
+
+function initializeYearlyChart() {
     updateYearlyChart();
 }
 
@@ -206,7 +249,7 @@ function updateYearlyChart() {
     const datasets = [];
     
     CATEGORIES.forEach((cat, index) => {
-        const checkbox = document.getElementById('cat-' + index);
+        const checkbox = document.getElementById('yearly-cat-' + index);
         if(checkbox && checkbox.checked) {
             const monthlyData = [];
             for(let month = 0; month < 12; month++) {
