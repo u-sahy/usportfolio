@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive News Grid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 40px 20px;
+            color: #222;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            letter-spacing: -1px;
+        }
+
+        /* Responsive Grid */
+        .grid-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Columns on Desktop */
+            gap: 25px;
+        }
+
+        /* Tablet Layout (2 Columns) */
+        @media (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile Layout (1 Column) */
+        @media (max-width: 650px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Design */
+        .card {
+            background: #fff;
+            border: 1px solid #000; /* Match your wireframe's black border */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Image Handling */
+        .card-image-box {
+            height: 200px;
+            margin: 10px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .card-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This makes sure images aren't squished */
+            display: block;
+        }
+
+        .card-body {
+            padding: 5px 15px 15px;
+            flex-grow: 1;
+        }
+
+        .meta-data {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: bold;
+            color: #888;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* Stats Footer */
+        .card-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Like Button Interaction */
+        .like-btn {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .like-btn:hover {
+            color: #000;
+        }
+
+        .like-btn.active {
+            color: #e74c3c;
+        }
+
+        .like-btn.active i {
+            font-weight: 900; /* Makes heart solid */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>News Update</h1>
+
+    <div class="grid-container">
+        <article class="card">
+            <div class="card-image-box">
+                <img src="images/N1.png" alt="News Image">
+            </div>
+            <div class="card-body">
+                <div class="meta-data">
+                    <span>POLITICS</span>
+                    <span>FEB 5 2026</span>
+                </div>
+                <h2 class="card-title">Democracy in the Crosshairs: How the Rajapaksa Era Redefined Modern Authoritarianism</h2>
+                <p class="card-text">A landmark report by Freedom House, titled Breaking Down Democracy, has highlighted the tenure of former Sri Lankan President Mahinda Rajapaksa as a case study in the rise of "illiberal democracy." The report examines how leaders in the 21st century—including Rajapaksa, Vladimir Putin, and Viktor Orbán—have moved away from traditional military coups in favor of "capturing" democratic institutions from within.
+​According to the analysis, the Rajapaksa administration utilized a specific toolkit to consolidate power:
+​Media Domination: Leveraging state-controlled media to marginalize political opponents.
+​Institutional Capture: Weakening the independence of the judiciary and civil society.
+​Nationalist Rhetoric: Using post-war triumphalism to justify the suppression of dissent.
+​The report notes that while Rajapaksa was eventually unseated in the 2015 elections, his methods provided a blueprint for other "modern authoritarians" to validate their rule through the ballot box while simultaneously hollowing out democratic safeguards.
+​Fact Check on Viral Claims
+Regarding recent social media speculation involving the so-called "Epstein files," investigative audits of the 2025-2026 document releases confirm that no Sri Lankan political figures, including Mahinda Rajapaksa, appear in the official records. Experts warn that AI-generated images and fabricated lists continue to be used as tools for political character assassination globally.</p>
+            </div>
+            <div class="card-footer">
+                <div class="stat-item">
+                    <i class="fa-regular fa-eye"></i>
+                    <span class="view-count">0</span>
+                </div>
+                <div class="stat-item like-btn" onclick="handleLike(this)">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="like-count">0</span>
+                </div>
+            </div>
+        </article><!--
+
+
+        <article class="card">
+            <div class="card-image-box">
+                <img src="https://picsum.photos/id/30/400/300" alt="News Image">
+            </div>
+            <div class="card-body">
+                <div class="meta-data">
+                    <span>Lifestyle</span>
+                    <span>JAN 3 2025</span>
+                </div>
+                <h2 class="card-title">Remote Work Tips</h2>
+                <p class="card-text">How to stay productive and maintain a healthy work-life balance while working from home.</p>
+            </div>
+            <div class="card-footer">
+                <div class="stat-item">
+                    <i class="fa-regular fa-eye"></i>
+                    <span class="view-count">84</span>
+                </div>
+                <div class="stat-item like-btn" onclick="handleLike(this)">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="like-count">42</span>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <div class="card-image-box">
+                <img src="https://picsum.photos/id/42/400/300" alt="News Image">
+            </div>
+            <div class="card-body">
+                <div class="meta-data">
+                    <span>Nature</span>
+                    <span>JAN 3 2025</span>
+                </div>
+                <h2 class="card-title">Ocean Wonders</h2>
+                <p class="card-text">New species discovered in the deepest parts of the Pacific Ocean during recent expeditions.</p>
+            </div>
+            <div class="card-footer">
+                <div class="stat-item">
+                    <i class="fa-regular fa-eye"></i>
+                    <span class="view-count">210</span>
+                </div>
+                <div class="stat-item like-btn" onclick="handleLike(this)">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="like-count">156</span>
+                </div>
+            </div>
+        </article>-->
+    </div>
+
+    <script>
+        // Function to toggle likes
+        function handleLike(element) {
+            const countLabel = element.querySelector('.like-count');
+            let count = parseInt(countLabel.textContent);
+
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+                countLabel.textContent = count - 1;
+            } else {
+                element.classList.add('active');
+                countLabel.textContent = count + 1;
+            }
+        }
+
+        // Simulate a view count increment on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.view-count').forEach(viewSpan => {
+                let views = parseInt(viewSpan.textContent);
+                // Just for the demo, we add 1 view when the user lands on the page
+                viewSpan.textContent = views + 1;
+            });
+        });
+    </script>
+</body>
+</html>
